@@ -1,4 +1,4 @@
-{{ lib, config, ... }:
+{ lib, config, ... }:
 
 lib.mkIf config.hardware.mounts {
   fileSystems."/mnt/Games" = {
