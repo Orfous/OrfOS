@@ -6,19 +6,19 @@
       firefox = {
         gnomeTheme = mkOption {
           type = types.bool;
-          default = true;
+          default = false;
         };
 
         privacy = mkOption {
           type = types.bool;
-          default = true;
+          default = false;
         };
 
         # Sites to launch on Firefox PWAs
         pwas.sites = mkOption {
           type = types.str;
           default =
-            "https://app.tuta.com https://icedborn.github.io/icedchat https://discord.com/app https://dtekteam.slack.com/ https://web.skype.com/";
+            "https://app.tuta.com https://icedborn.github.io/icedchat https://discord.com/app";
         };
       };
 
@@ -37,8 +37,7 @@
         # Extras to use for adwaita for steam theme
         adwaitaForSteam.extras = mkOption {
           type = types.str;
-          default =
-            "-e library/hide_whats_new -e login/hover_qr -e windowcontrols/hide-close";
+          default = "-e login/hover_qr";
         };
 
         beta = mkOption {
@@ -145,7 +144,7 @@
       gnome = {
         enable = mkOption {
           type = types.bool;
-          default = false;
+          default = true;
         };
 
         arcmenu = mkOption {
@@ -180,7 +179,7 @@
 
         hotCorners = mkOption {
           type = types.bool;
-          default = false;
+          default = true;
         };
 
         # Whether to set (or unset) gnome's and arcmenu's pinned apps
@@ -202,13 +201,13 @@
         # Options: 'minimize', 'maximize', 'close', 'spacer'(adds space between buttons), ':'(left-center-right separator)
         titlebarLayout = mkOption {
           type = types.str;
-          default = "appmenu:close";
+          default = "appmenu:minimize,close";
         };
 
         workspaces = {
           dynamicWorkspaces = mkOption {
             type = types.bool;
-            default = true;
+            default = false;
           };
 
           # Determines the maximum number of workspaces when dynamic workspaces are disabled
@@ -280,13 +279,13 @@
       gpu = {
         amd = mkOption {
           type = types.bool;
-          default = true;
+          default = false;
         };
 
         nvidia = {
           enable = mkOption {
             type = types.bool;
-            default = false;
+            default = true;
           };
 
           powerLimit = {
@@ -320,27 +319,27 @@
         main = {
           enable = mkOption {
             type = types.bool;
-            default = true;
+            default = false;
           };
 
           name = mkOption {
             type = types.str;
-            default = "DP-1";
+            default = "HDMI-A-1";
           };
 
           resolution = mkOption {
             type = types.str;
-            default = "1920x1080";
+            default = "3840x2160";
           };
 
           refreshRate = mkOption {
             type = types.str;
-            default = "144";
+            default = "60";
           };
 
           position = mkOption {
             type = types.str;
-            default = "0x0";
+            default = "1920x0";
           };
 
           scaling = mkOption {
@@ -362,22 +361,22 @@
 
           name = mkOption {
             type = types.str;
-            default = "DP-2";
+            default = "DP-1";
           };
 
           resolution = mkOption {
             type = types.str;
-            default = "1280x1024";
+            default = "1920x1080";
           };
 
           refreshRate = mkOption {
             type = types.str;
-            default = "75";
+            default = "60";
           };
 
           position = mkOption {
             type = types.str;
-            default = "1920x0";
+            default = "0x0";
           };
 
           scaling = mkOption {
@@ -460,13 +459,13 @@
         # Number of days before a generation can be deleted
         days = mkOption {
           type = types.str;
-          default = "0";
+          default = "7";
         };
 
         # Number of generations that will always be kept
         generations = mkOption {
           type = types.str;
-          default = "10";
+          default = "5";
         };
       };
 
@@ -494,23 +493,23 @@
 
           username = mkOption {
             type = types.str;
-            default = "icedborn";
+            default = "orfous";
           };
 
           description = mkOption {
             type = types.str;
-            default = "IceDBorn";
+            default = "Orfous";
           };
 
           git = {
             username = mkOption {
               type = types.str;
-              default = "IceDBorn";
+              default = "Orfous";
             };
 
             email = mkOption {
               type = types.str;
-              default = "git.outsider841@simplelogin.fr";
+              default = "orfous29@gmail.com";
             };
           };
         };
@@ -518,7 +517,7 @@
         work = {
           enable = mkOption {
             type = types.bool;
-            default = true;
+            default = false;
           };
 
           username = mkOption {
@@ -548,7 +547,7 @@
       # Do not change without checking the docs (config.system.stateVersion)
       version = mkOption {
         type = types.str;
-        default = "23.05";
+        default = "23.11";
       };
     };
   };
