@@ -4,7 +4,7 @@ lib.mkIf config.system.user.main.enable {
   home-manager.users.${config.system.user.main.username} = {
     gtk = {
       enable = true;
-      theme.name = "Adwaita-dark";
+      theme.name = "adw-gtk3-dark";
       cursorTheme.name = "Bibata-Modern-Classic";
       iconTheme.name = "Tela-black-dark";
     }; # Change GTK themes
