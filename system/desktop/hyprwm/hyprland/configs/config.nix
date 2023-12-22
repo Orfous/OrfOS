@@ -3,16 +3,17 @@ let
   workspaceRules = if (config.hardware.monitors.main.enable
     && config.hardware.monitors.secondary.enable) then ''
       windowrulev2 = workspace 1 silent, class:^(firefox)$
-      windowrulev2 = workspace 2 silent, class:^(startup-nvchad)$
+      windowrulev2 = workspace 2 silent, class:^(startup-nvchad|VSCodium)$
       windowrulev2 = workspace 3 silent, class:^(Steam|steam|steam_app_.*)$, title:^((?!notificationtoasts.*).)*$
       windowrulev2 = workspace 3 silent, title:^(.*Steam[A-Za-z0-9\s]*)$
       windowrulev2 = workspace 11 silent, class:^(WebCord|Signal|pwas)$
       windowrulev2 = workspace 12 silent, class:^(org\.gnome\.Nautilus)$
       windowrulev2 = workspace 13 silent, class:^(io.missioncenter.MissionCenter)$ # Task manager
       windowrulev2 = workspace 14 silent, class:^(startup-kitty)$ # Terminal
+
     '' else ''
       windowrulev2 = workspace 1 silent, class:^(firefox)$
-      windowrulev2 = workspace 2 silent, class:^(startup-nvchad)$
+      windowrulev2 = workspace 2 silent, class:^(startup-nvchad|VSCodium)$
       windowrulev2 = workspace 3 silent, class:^(WebCord|Signal|pwas)$
       windowrulev2 = workspace 4 silent, class:^(Steam|steam|steam_app_.*)$, title:^((?!notificationtoasts.*).)*$
       windowrulev2 = workspace 4 silent, title:^(.*Steam[A-Za-z0-9\s]*)$
@@ -54,6 +55,11 @@ in {
 
         ### CONFIGURATION ###
 
+        env = LIBVA_DRIVER_NAME,nvidia
+        env = XDG_SESSION_TYPE,wayland
+        env = GBM_BACKEND,nvidia-drm
+        env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+        env = WLR_NO_HARDWARE_CURSORS,1
         env = WLR_DRM_NO_ATOMIC,1
 
         general {
@@ -93,7 +99,7 @@ in {
         misc {
           disable_hyprland_logo = true
           disable_splash_rendering = true
-          vrr = 2
+          vrr = 0
         }
 
         dwindle {
@@ -128,6 +134,8 @@ in {
         bind = $mainMod, N, exec, swaync-client -t -sw
         bind = $mainMod SHIFT, N, exec, swaync-client -d -sw
         bind = $mainMod, C, exec, hyprpicker --autocopy
+        # bind = $mainMod, L, exec, swaylockconf Pending update to swaylockconf
+        bind = $mainMod, X, exec, kitty
 
         # Window control
         bind = $mainMod, Q, killactive
@@ -236,7 +244,7 @@ in {
         # Standard applications
         exec-once = firefox & nautilus -w & nautilus -w & firefox --no-remote -P PWAs --name pwas ${config.applications.firefox.pwas.sites} & steam
         # Terminals/Task managers/IDEs
-        exec-once = kitty --class startup-nvchad tmux new -s nvchad nvim & kitty --class startup-kitty tmux new -s terminals \; split-window -v \; select-pane -U \; split-window -h \; select-pane -D & missioncenter
+        exec-once = codium --user-data-dir ~/.config/VSCodiumIDE & kitty --class startup-kitty tmux new -s terminals \; split-window -v \; select-pane -U \; split-window -h \; select-pane -D & missioncenter
 
 
         ### PLUGINS ###
