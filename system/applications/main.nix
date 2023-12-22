@@ -26,7 +26,17 @@ let
   ];
 
   # Packages to add for a fork of the config
-  myPackages = with pkgs; [ ];
+  myPackages = with pkgs; [
+    spotify # Music streaming Service
+    mullvad-vpn # The GUI client for mullvad
+    nextcloud-client # Nextcloud themed desktop client
+    bun # Incredibly fast JavaScript runtime, bundler, transpiler and package manager
+    adw-gtk3 # Adds libadwaita support to GTK-3
+    gradience # Customize libadwaita and GTK3 apps (with adw-gtk3)
+    gsound # Small library for playing system sounds (required to show file properties in Nautilus)
+    ungoogled-chromium # Chromium with dependencies on Google web services removed
+
+  ];
 
   shellScripts = [ update ];
 in lib.mkIf config.system.user.main.enable {
@@ -36,7 +46,7 @@ in lib.mkIf config.system.user.main.enable {
       godot_4 # Game engine
       input-remapper # Remap input device controls
       scanmem # Cheat engine for linux
-      stremio # Straming platform
+      stremio # Movie/Series/Anime streaming service
     ] ++ emulators ++ gaming ++ myPackages ++ shellScripts;
 
   # Wayland microcompositor
