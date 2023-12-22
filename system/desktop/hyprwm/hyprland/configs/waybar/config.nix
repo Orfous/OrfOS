@@ -54,8 +54,8 @@ in {
       default = ''
         {
           "layer": "top",
-          "modules-left": ["hyprland/workspaces"],
-          "modules-center": ["hyprland/window"],
+          "modules-left": ["hyprland/workspaces","hyprland/window"],
+          "modules-center": ["clock"],
           "modules-right": [
             "tray",
             "custom/vpn",
@@ -65,8 +65,6 @@ in {
             "hyprland/language",
             "custom/separator",
             "pulseaudio",
-            "custom/separator",
-            "clock",
             "custom/notification",
             "custom/separator",
             "custom/power",
