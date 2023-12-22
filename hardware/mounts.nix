@@ -14,4 +14,13 @@ lib.mkIf config.hardware.mounts {
     options = lib.mkIf (config.hardware.btrfsCompression.enable
       && config.hardware.btrfsCompression.mounts) [ "compress=zstd" ];
   };
+
+  #   fileSystems."/mnt/Softer Drive" = {
+  #     device = "/dev/disk/by-uuid/5febf70b-0510-4efc-9431-f104ea0eaa16";
+  #     encrypted = {
+  #       enable = true;
+  #       blkDev = "/dev/disk/by-uuid/0811fc67-2d1f-4d86-b681-e63b4747d47a";
+  #     };
+  #     fsType = "auto";
+  #   };
 }
