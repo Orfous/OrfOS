@@ -33,8 +33,8 @@ let
     }
 
     # Navigate to configuration directory
-    cd ${config.system.configurationLocation} 2> /dev/null ||
-    (echo 'Configuration path is invalid. Run build.sh manually to update the path!' && false) &&
+    cd ${config.configurationLocation} 2> /dev/null ||
+    (echo 'Configuration path is invalid. Manually run build.sh inside the configuration directory to update the path!' && false) &&
 
     # Update specific commands
     if [ $ARG1 -eq 1 ]; then
@@ -80,7 +80,7 @@ let
     cargo # Rust package manager
     dotnet-sdk_7 # SDK for .net
     gcc # C++ compiler
-    # gdtoolkit # Tools for gdscript
+    gdtoolkit # Tools for gdscript
     gnumake # A tool to control the generation of non-source files from sources
     nixfmt # A nix formatter
     nodejs # Node package manager
@@ -102,14 +102,19 @@ let
     nil # Nix language server
     nodePackages.bash-language-server # Bash Language server
     nodePackages.dockerfile-language-server-nodejs # Dockerfiles language server
+    nodePackages.intelephense # PHP language server
     nodePackages.prettier # Javascript/Typescript formatter
     nodePackages.typescript-language-server # Typescript language server
     nodePackages.vscode-langservers-extracted # HTML, CSS, Eslint, Json language servers
+    phpPackages.phpstan # PHP Static Analysis Tool
     python3Packages.jedi-language-server # Python language server
     ripgrep # Silver searcher grep
     rust-analyzer # Rust language server
     rustfmt # Rust formatter
+    shellcheck # Shell script analysis tool
     stylua # Lua formatter
+    tailwindcss-language-server # Tailwind language server
+    tree-sitter # Parser generator tool and an incremental parsing library
   ];
 
   packageOverrides = with pkgs;
@@ -176,6 +181,7 @@ in {
       ntfs3g # Support NTFS drives
       obs-studio # Recording/Livestream
       onlyoffice-bin # Microsoft Office alternative for Linux
+      pavucontrol # Sound manager
       p7zip # 7zip
       pitivi # Video editor
       ranger # Terminal file manager

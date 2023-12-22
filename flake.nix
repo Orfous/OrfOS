@@ -11,21 +11,36 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hycov = {
+      url = "github:DreamMaoMao/hycov";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     phps.url = "github:fossar/nix-phps";
   };
 
   outputs = { self, nixpkgs, hyprland, home-manager, nur, pipewire-screenaudio
-    , steam-session, phps }@inputs: {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          nur.nixosModules.nur
-          home-manager.nixosModules.home-manager
-          hyprland.nixosModules.default
-          steam-session.nixosModules.default
-          ./configuration.nix
-        ];
-      };
+    , steam-session, phps, hycov }@inputs: {
+      nixosConfigurations.${nixpkgs.lib.fileContents "/etc/hostname"} =
+        nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            {
+              options = with nixpkgs.lib; {
+                configurationLocation = mkOption {
+                  type = types.str;
+                  default =
+                    nixpkgs.lib.fileContents "/tmp/.configuration-location";
+                };
+              };
+            }
+            nur.nixosModules.nur
+            home-manager.nixosModules.home-manager
+            hyprland.nixosModules.default
+            steam-session.nixosModules.default
+            ./configuration.nix
+          ];
+        };
     };
 }

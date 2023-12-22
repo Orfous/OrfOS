@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, inputs, ... }:
 let
   workspaceRules = if (config.hardware.monitors.main.enable
     && config.hardware.monitors.secondary.enable) then ''
@@ -210,7 +210,7 @@ in {
         windowrulev2 = noborder, fullscreen:1
 
         # Inhibit idle for apps
-        windowrulev2 = idleinhibit focus, class:^(steam_app_.*|org\.gnome\.clocks)$
+        windowrulev2 = idleinhibit focus, class:^(org\.gnome\.clocks|Steam|steam|steam_app_.*)$
 
         # Tile apps
         windowrulev2 = tile, class:^(Godot.*|Steam|steam_app_.*|photoshop\.exe|DesktopEditors)$
@@ -237,6 +237,36 @@ in {
         exec-once = firefox & nautilus -w & nautilus -w & firefox --no-remote -P PWAs --name pwas ${config.applications.firefox.pwas.sites} & steam
         # Terminals/Task managers/IDEs
         exec-once = kitty --class startup-nvchad tmux new -s nvchad nvim & kitty --class startup-kitty tmux new -s terminals \; split-window -v \; select-pane -U \; split-window -h \; select-pane -D & missioncenter
+
+
+        ### PLUGINS ###
+        plugin = ${inputs.hycov.packages.${pkgs.system}.hycov}/lib/libhycov.so
+
+        plugin {
+          hycov {
+            alt_toggle_auto_next = 1
+            auto_exit = 1
+            auto_fullscreen = 1
+            disable_spawn = 0
+            disable_workspace_change = 0
+            enable_alt_release_exit = 1
+            enable_gesture = 0
+            enable_hotarea = 1
+            hotarea_size = 10
+            move_focus_distance = 100
+            only_active_monitor = 1
+            only_active_workspace = 1
+            overview_gappi = 10
+            overview_gappo = 10
+            swipe_fingers = 4
+          }
+        }
+
+        bind = ALT, tab, hycov:toggleoverview
+        bind = ALT, left, hycov:movefocus, l
+        bind = ALT, right, hycov:movefocus, r
+        bind = ALT, up, hycov:movefocus, u
+        bind = ALT, down, hycov:movefocus, d
       '';
     };
   };
