@@ -356,7 +356,7 @@
         main = {
           enable = mkOption {
             type = types.bool;
-            default = false;
+            default = true;
           };
 
           name = mkOption {
@@ -381,7 +381,7 @@
 
           scaling = mkOption {
             type = types.str;
-            default = "1";
+            default = "1.5";
           };
 
           rotation = mkOption {
