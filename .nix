@@ -119,7 +119,7 @@
       autologin = {
         enable = mkOption {
           type = types.bool;
-          default = true;
+          default = false;
         };
 
         # If false, defaults to work user
