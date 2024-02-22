@@ -8,7 +8,7 @@ let
   update = pkgs.writeShellScriptBin "update" "rebuild 1 ${stashLock} 1 1";
 
   emulators = with pkgs; [
-    cemu # Wii U Emulator
+    # cemu # Wii U Emulator
     duckstation # PS1 Emulator
     pcsx2 # PS2 Emulator
     ppsspp # PSP Emulator
@@ -35,7 +35,12 @@ let
     gradience # Customize libadwaita and GTK3 apps (with adw-gtk3)
     gsound # Small library for playing system sounds (required to show file properties in Nautilus)
     ungoogled-chromium # Chromium with dependencies on Google web services removed
-
+    python311Packages.pandas # Python pandas packages
+    python311Packages.pip
+    xorg.xmodmap
+    xorg.xev
+    xkbset
+    nodePackages_latest.gulp
   ];
 
   shellScripts = [ update ];
