@@ -3,8 +3,8 @@
 let
   users = {
     main = {
-      username = "icedborn";
-      description = "IceDBorn";
+      username = "orfous";
+      description = "Orfous";
     };
 
     work = {
@@ -12,8 +12,7 @@ let
       description = "Work";
     };
   };
-in
-{
+in {
   options = with lib; {
     icedos = {
       applications = {
@@ -67,13 +66,14 @@ in
 
           privacy = mkOption {
             type = types.bool;
-            default = true;
+            default = false;
           };
 
           # Sites to launch on Firefox PWAs
           pwas = mkOption {
             type = types.str;
-            default = "https://app.tuta.com https://icedborn.github.io/icedchat https://discord.com/app https://dtekteam.slack.com/ https://web.skype.com/";
+            default =
+              "https://icedborn.github.io/icedchat https://discord.com/app";
           };
         };
 
@@ -122,7 +122,7 @@ in
 
         emulators.switch = mkOption {
           type = types.bool;
-          default = true;
+          default = false;
         };
       };
 
@@ -168,7 +168,7 @@ in
         autologin = {
           enable = mkOption {
             type = types.bool;
-            default = true;
+            default = false;
           };
 
           user = mkOption {
@@ -192,7 +192,7 @@ in
         gnome = {
           enable = mkOption {
             type = types.bool;
-            default = false;
+            default = true;
           };
 
           extensions = {
@@ -244,13 +244,13 @@ in
           # Options: 'minimize', 'maximize', 'close', 'spacer'(adds space between buttons), ':'(left-center-right separator)
           titlebarLayout = mkOption {
             type = types.str;
-            default = "appmenu:close";
+            default = "appmenu:minimize,close";
           };
 
           workspaces = {
             dynamicWorkspaces = mkOption {
               type = types.bool;
-              default = true;
+              default = false;
             };
 
             # Determines the maximum number of workspaces when dynamic workspaces are disabled
@@ -350,13 +350,13 @@ in
         gpu = {
           amd = mkOption {
             type = types.bool;
-            default = true;
+            default = false;
           };
 
           nvidia = {
             enable = mkOption {
               type = types.bool;
-              default = false;
+              default = true;
             };
 
             powerLimit = {
@@ -386,34 +386,29 @@ in
               default = true;
             };
 
-            deck = mkOption {
-              type = types.bool;
-              default = false;
-            };
-
             name = mkOption {
               type = types.str;
-              default = "DP-1";
+              default = "HDMI-A-1";
             };
 
             resolution = mkOption {
               type = types.str;
-              default = "1920x1080";
+              default = "3840x2160";
             };
 
             refreshRate = mkOption {
               type = types.str;
-              default = "144";
+              default = "60";
             };
 
             position = mkOption {
               type = types.str;
-              default = "1360x0";
+              default = "1920x0";
             };
 
             scaling = mkOption {
               type = types.str;
-              default = "1";
+              default = "1.5";
             };
 
             rotation = mkOption {
@@ -428,19 +423,14 @@ in
               default = true;
             };
 
-            deck = mkOption {
-              type = types.bool;
-              default = false;
-            };
-
             name = mkOption {
               type = types.str;
-              default = "HDMI-A-1";
+              default = "DP-1";
             };
 
             resolution = mkOption {
               type = types.str;
-              default = "1360x768";
+              default = "1920x1080";
             };
 
             refreshRate = mkOption {
@@ -451,48 +441,6 @@ in
             position = mkOption {
               type = types.str;
               default = "0x0";
-            };
-
-            scaling = mkOption {
-              type = types.str;
-              default = "1";
-            };
-
-            rotation = mkOption {
-              type = types.str;
-              default = "0";
-            };
-          };
-
-          third = {
-            enable = mkOption {
-              type = types.bool;
-              default = true;
-            };
-
-            deck = mkOption {
-              type = types.bool;
-              default = false;
-            };
-
-            name = mkOption {
-              type = types.str;
-              default = "DP-2";
-            };
-
-            resolution = mkOption {
-              type = types.str;
-              default = "1280x1024";
-            };
-
-            refreshRate = mkOption {
-              type = types.str;
-              default = "75";
-            };
-
-            position = mkOption {
-              type = types.str;
-              default = "3280x0";
             };
 
             scaling = mkOption {
@@ -584,13 +532,13 @@ in
             # Number of days before a generation can be deleted
             days = mkOption {
               type = types.str;
-              default = "0";
+              default = "7";
             };
 
             # Number of generations that will always be kept
             generations = mkOption {
               type = types.str;
-              default = "10";
+              default = "5";
             };
           };
         };
@@ -627,7 +575,7 @@ in
                 # off, afterDelay, onFocusChange, onWindowChange
                 autoSave = mkOption {
                   type = types.str;
-                  default = "off";
+                  default = "onFocusChange";
                 };
 
                 formatOnSave = mkOption {
@@ -637,19 +585,19 @@ in
 
                 formatOnPaste = mkOption {
                   type = types.str;
-                  default = "true";
+                  default = "false";
                 };
               };
 
               git = {
                 username = mkOption {
                   type = types.str;
-                  default = "IceDBorn";
+                  default = "Orfous";
                 };
 
                 email = mkOption {
                   type = types.str;
-                  default = "git.outsider841@simplelogin.fr";
+                  default = "orfous29@gmail.com";
                 };
               };
 
@@ -717,7 +665,7 @@ in
 
                   seconds = mkOption {
                     type = types.str;
-                    default = "180";
+                    default = "300";
                   };
                 };
 
@@ -729,14 +677,14 @@ in
 
                   seconds = mkOption {
                     type = types.str;
-                    default = "300";
+                    default = "180";
                   };
                 };
 
                 suspend = {
                   enable = mkOption {
                     type = types.bool;
-                    default = true;
+                    default = false;
                   };
 
                   seconds = mkOption {
@@ -895,7 +843,7 @@ in
         # Do not change without checking the docs (config.system.stateVersion)
         version = mkOption {
           type = types.str;
-          default = "23.05";
+          default = "23.11";
         };
       };
     };
