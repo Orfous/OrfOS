@@ -82,7 +82,7 @@ in {
           # Sites to launch on Firefox PWAs
           pwas = mkOption {
             type = types.str;
-            default = "https://app.tuta.com https://develop.element.io https://discord.com/app https://dtekteam.slack.com/ https://web.skype.com/";
+            default = "https://develop.element.io https://discord.com/app";
           };
         };
 
@@ -127,11 +127,6 @@ in {
               };
             };
           };
-        };
-
-        sunshine.enable = mkOption {
-          type = types.bool;
-          default = true;
         };
 
         sunshine.enable = mkOption {
@@ -277,7 +272,7 @@ in {
         hyprland = {
           enable = mkOption {
             type = types.bool;
-            default = true;
+            default = false;
           };
 
           # Find backlight unit using brightnessctl
@@ -369,7 +364,7 @@ in {
           nvidia = {
             enable = mkOption {
               type = types.bool;
-              default = false;
+              default = true;
             };
 
 						beta = mkOption {
