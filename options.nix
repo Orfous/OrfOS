@@ -246,7 +246,7 @@ in {
 
           startupItems = mkOption {
             type = types.bool;
-            default = false;
+            default = true;
           };
 
           # Options: 'minimize', 'maximize', 'close', 'spacer'(adds space between buttons), ':'(left-center-right separator)
