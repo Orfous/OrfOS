@@ -9,7 +9,7 @@ let
 
   cfg = config.icedos;
   powerLimit = cfg.hardware.gpu.nvidia.powerLimit;
-  nvidia_x11 = cfg.boot.kernelPackages.nvidia_x11.bin;
+  nvidia_x11 = config.boot.kernelPackages.nvidia_x11.bin;
 
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -30,6 +30,8 @@ mkIf (cfg.hardware.gpu.nvidia.enable) {
     };
 
     modesetting.enable = true;
+
+		package = if (cfg.hardware.gpu.nvidia.beta) then config.boot.kernelPackages.nvidiaPackages.beta else config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   virtualisation.docker.enableNvidia = cfg.hardware.virtualisation.docker; # Enable nvidia gpu acceleration for docker

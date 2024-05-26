@@ -69,8 +69,7 @@ mkIf (cfg.user.work.enable) {
   users.users.${username}.packages =
     with pkgs;
     [
-      dbeaver # Database manager
-      google-chrome # Dev browser
+      beekeeper-studio # Database manager
       php # Programming language for websites
       phpPackages.composer # Package manager for PHP
     ]

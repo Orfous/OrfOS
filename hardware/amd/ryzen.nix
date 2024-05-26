@@ -6,7 +6,16 @@ let
   cfg = config.icedos.hardware.cpu.amd;
 in mkIf (cfg.enable) {
   boot = {
-    kernelModules = [ "msr" "zenpower" ];
+    kernelParams = [
+      "amd-pstate=active"
+      "amd_pstate.shared_mem=1"
+    ];
+
+    kernelModules = [
+      "amd-pstate"
+      "msr"
+      "zenpower"
+    ];
     extraModulePackages = with config.boot.kernelPackages; [ zenpower ];
   };
 

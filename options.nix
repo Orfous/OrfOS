@@ -16,6 +16,16 @@ in {
   options = with lib; {
     icedos = {
       applications = {
+        android-tools = mkOption {
+          type = types.bool;
+          default = true;
+        };
+
+        brave = mkOption {
+          type = types.bool;
+          default = true;
+        };
+
         codium = {
           enable = mkOption {
             type = types.bool;
@@ -72,8 +82,7 @@ in {
           # Sites to launch on Firefox PWAs
           pwas = mkOption {
             type = types.str;
-            default =
-              "https://icedborn.github.io/icedchat https://discord.com/app";
+            default = "https://app.tuta.com https://develop.element.io https://discord.com/app https://dtekteam.slack.com/ https://web.skype.com/";
           };
         };
 
@@ -120,6 +129,16 @@ in {
           };
         };
 
+        sunshine.enable = mkOption {
+          type = types.bool;
+          default = true;
+        };
+
+        sunshine.enable = mkOption {
+          type = types.bool;
+          default = false;
+        };
+
         emulators.switch = mkOption {
           type = types.bool;
           default = false;
@@ -155,12 +174,6 @@ in {
             type = types.str;
             default = "/boot";
           };
-        };
-
-        # Used for rebooting to windows with efibootmgr
-        windowsEntry = mkOption {
-          type = types.str;
-          default = "0000";
         };
       };
 
@@ -356,8 +369,13 @@ in {
           nvidia = {
             enable = mkOption {
               type = types.bool;
-              default = true;
+              default = false;
             };
+
+						beta = mkOption {
+							type = types.bool;
+							default = false;
+						};
 
             powerLimit = {
               enable = mkOption {
