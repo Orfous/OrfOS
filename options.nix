@@ -236,7 +236,7 @@ in {
 
           hotCorners = mkOption {
             type = types.bool;
-            default = false;
+            default = true;
           };
 
           powerButtonAction = mkOption {
