@@ -30,17 +30,17 @@ in {
           };
 
           # Add steam to startup
-          ".config/autostart/steam.desktop" = mkIf (user != "work") {
-            text = ''
-              [Desktop Entry]
-              Exec=steam
-              Icon=steam
-              Name=Steam
-              StartupWMClass=steam
-              Terminal=false
-              Type=Application
-            '';
-          };
+          # ".config/autostart/steam.desktop" = mkIf (user != "work") {
+          #   text = ''
+          #     [Desktop Entry]
+          #     Exec=steam
+          #     Icon=steam
+          #     Name=Steam
+          #     StartupWMClass=steam
+          #     Terminal=false
+          #     Type=Application
+          #   '';
+          # };
 
           # ".config/autostart/slack.desktop" = mkIf (user == "work") {
           #   text = ''
