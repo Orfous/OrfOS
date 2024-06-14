@@ -20,12 +20,6 @@
     };
 
     # Apps
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
 
     phps = {
       url = "github:fossar/nix-phps";
@@ -41,11 +35,6 @@
       url = "github:jim3692/shell-in-netns";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    switch-emulators = {
-      url = "git+https:///codeberg.org/K900/yuzu-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -59,9 +48,6 @@
       pipewire-screenaudio,
       shell-in-netns,
 
-      hyprland,
-      hyprland-plugins,
-      switch-emulators,
     }@inputs:
     {
       nixosConfigurations.${nixpkgs.lib.fileContents "/etc/hostname"} = nixpkgs.lib.nixosSystem {
@@ -93,9 +79,6 @@
           chaotic.nixosModules.default
           home-manager.nixosModules.home-manager
           nerivations.nixosModules.default
-
-          hyprland.nixosModules.default
-          ./system/desktop/hyprland
         ];
       };
     };
