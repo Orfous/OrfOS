@@ -100,7 +100,7 @@ in {
         steam = {
           beta = mkOption {
             type = types.bool;
-            default = true;
+            default = false;
           };
 
           # Workaround for slow steam downloads
