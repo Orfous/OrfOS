@@ -47,4 +47,16 @@ mkIf (cfg.enable) {
 
     wantedBy = [ "multi-user.target" ];
   };
+
+    systemd.services.autoOwn = {
+    enable = true;
+    description = "Ryzen Undervolt";
+    after = [ "syslog.target" "systemd-modules-load.service" ];
+    serviceConfig = {
+      User = "root";
+      ExecStart =
+        "/run/current-system/sw/bin/chown -R orfous:users '/mnt/Harder Drive'";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
 }

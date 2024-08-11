@@ -2,10 +2,10 @@ myPackages = []
 
 codingDeps = [
   "bruno", # API explorer
-  "cargo", # Rust package manager
-  "dotnet-sdk_7", # SDK for .net
+  # "cargo", # Rust package manager
+  # "dotnet-sdk_7", # SDK for .net
   "gcc", # C++ compiler
-  "gdtoolkit_4", # Tools for gdscript
+  # "gdtoolkit_4", # Tools for gdscript
   "gnumake", # A tool to control the generation of non-source files from sources
   "nixfmt-rfc-style", # A nix formatter
   "nodejs", # Node package manager
@@ -14,7 +14,7 @@ codingDeps = [
 
 packages = [
   "appimage-run", # Appimage runner
-  "bat", # Better cat command
+  # "bat", # Better cat command
   "bless", # HEX Editor
   "curtail", # Image compressor
   "duf", # Disk usage utility
@@ -31,7 +31,7 @@ packages = [
   "killall", # Tool to kill all programs matching process name
   "lsd", # Better ls command
   "mission-center", # Task manager
-  "moonlight-qt", # Remote streaming client
+  # "moonlight-qt", # Remote streaming client
   "mousai", # Song recognizer
   "ncdu", # Terminal disk analyzer
   "newsflash", # RSS reader
@@ -41,11 +41,11 @@ packages = [
   "onlyoffice-bin", # Microsoft Office alternative for Linux
   "p7zip", # 7zip
   "pavucontrol", # Sound manager
-  "pitivi", # Video editor
+  # "pitivi", # Video editor
   "rnnoise-plugin", # A real-time noise suppression plugin
-  "scrcpy", # Remotely use android
+  # "scrcpy", # Remotely use android
   "signal-desktop", # Encrypted messaging platform
-  "solaar", # Logitech devices manager
+  # "solaar", # Logitech devices manager
   "tree", # Display folder content at a tree format
   "unrar", # Support opening rar files
   "unzip", # An extraction utility
