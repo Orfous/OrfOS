@@ -30,6 +30,7 @@ mkIf (cfg.applications.codium.enable) {
             "[javascript]": {
               "editor.defaultFormatter": "esbenp.prettier-vscode"
             },
+            "css.lint.unknownAtRules": "ignore",
             "diffEditor.ignoreTrimWhitespace": false,
             "editor.fontFamily": "'JetBrainsMono Nerd Font', 'Droid Sans Mono', 'monospace', monospace",
             "editor.fontLigatures": true,
@@ -44,7 +45,9 @@ mkIf (cfg.applications.codium.enable) {
             "editor.smoothScrolling": true,
             "editor.tabSize": 2,
             "evenBetterToml.formatter.alignComments": false,
+            "emmet.includeLanguages": {"postcss": "css"}
             "files.autoSave": "${cfg.system.users.${user}.applications.codium.autoSave}",
+            "files.associations": {"*.css": "postcss"},
             "files.insertFinalNewline": true,
             "files.trimFinalNewlines": true,
             "files.trimTrailingWhitespace": true,
