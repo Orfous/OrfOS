@@ -53,6 +53,8 @@ mkIf (cfg.applications.steam.enable) {
               mkIf (!cfg.hardware.devices.steamdeck) [
                 steam
                 steamtinkerlaunch
+                glibc
+                steam-run
               ];
           };
         };

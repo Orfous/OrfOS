@@ -64,7 +64,7 @@ in
       "net.ipv6.conf.all.disable_ipv6" = !cfg.hardware.networking.ipv6; # Disable ipv6 for all interfaces
       "page-cluster" = 1;
       "vm.compaction_proactiveness" = 0;
-      "vm.max_map_count" = 1048576; # Fixes crashes or start-up issues for games
+      "vm.max_map_count" = 262144; # Fixes crashes or start-up issues for games
       "vm.page_lock_unfairness" = 1;
       "vm.swappiness" = builtins.toString (cfg.system.swappiness); # Set agressiveness of swap usage
     };
