@@ -30,6 +30,7 @@ mkIf (cfg.hardware.gpus.nvidia.enable) {
     };
 
     modesetting.enable = true;
+    open = true;
 
     package =
       if (cfg.hardware.gpus.nvidia.beta) then
