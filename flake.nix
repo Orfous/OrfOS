@@ -83,7 +83,6 @@
           nerivations.nixosModules.default
 
           ./system/desktop
-          ./system/desktop/gnome
 
           ./system/applications/modules/zen-browser
 
