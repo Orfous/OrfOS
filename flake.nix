@@ -19,18 +19,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    steam-session = {
-      url = "github:Jovian-Experiments/Jovian-NixOS";
-      follows = "chaotic/jovian";
-    };
-
     # Apps
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
 
     phps = {
       url = "github:fossar/nix-phps/5c2a9bf0246b7f38b7ca737f0f1f36d5b45ae15a";
@@ -59,9 +48,6 @@
       phps,
       pipewire-screenaudio,
       shell-in-netns,
-      steam-session,
-      hyprland,
-      hyprland-plugins,
 
     }@inputs:
     {
@@ -94,12 +80,6 @@
           chaotic.nixosModules.default
           home-manager.nixosModules.home-manager
           nerivations.nixosModules.default
-
-          steam-session.nixosModules.default
-          ./system/desktop/steam-session.nix
-
-          hyprland.nixosModules.default
-          ./system/desktop/hyprland
 
           ./system/desktop
           ./system/desktop/gnome
