@@ -23,12 +23,6 @@ mkIf (cfg.hardware.gpus.nvidia.enable) {
   services.xserver.videoDrivers = [ "nvidia" ]; # Install the nvidia drivers
 
   hardware.nvidia = {
-    prime = mkIf (cfg.hardware.devices.laptop) {
-      offload.enable = true;
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
-
     modesetting.enable = true;
     open = true;
 
@@ -37,6 +31,12 @@ mkIf (cfg.hardware.gpus.nvidia.enable) {
         config.boot.kernelPackages.nvidiaPackages.beta
       else
         config.boot.kernelPackages.nvidiaPackages.stable;
+
+    prime = mkIf (cfg.hardware.devices.laptop) {
+      offload.enable = true;
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
   };
 
   # Enable nvidia gpu acceleration for containers
@@ -51,6 +51,7 @@ mkIf (cfg.hardware.gpus.nvidia.enable) {
   );
 
   environment.systemPackages = [ ] ++ optional (cfg.hardware.devices.laptop) nvidia-offload; # Use nvidia-offload to launch programs using the nvidia GPU
+  nixpkgs.config.cudaSupport = cfg.hardware.gpus.nvidia.cuda;
 
   # Set nvidia gpu power limit
   systemd.services.nv-power-limit = mkIf (powerLimit.enable) {

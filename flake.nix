@@ -20,10 +20,16 @@
     };
 
     # Apps
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
-    phps = {
-      url = "github:fossar/nix-phps/5c2a9bf0246b7f38b7ca737f0f1f36d5b45ae15a";
-      inputs.nixpkgs.url = "github:NixOS/nixpkgs/b73c2221a46c13557b1b3be9c2070cc42cf01eb3";
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprlux = {
+      url = "github:amadejkastelic/Hyprlux";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
     };
 
     pipewire-screenaudio = {
@@ -36,19 +42,29 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zen-browser = {
+      url = "github:MarceColl/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
     {
-      self,
       chaotic,
-      nixpkgs,
       home-manager,
       nerivations,
-      phps,
+      nixpkgs,
       pipewire-screenaudio,
+      self,
       shell-in-netns,
+      hyprland,
+      hyprland-plugins,
+      hyprlux,
 
+      steam-session,
+
+      zen-browser,
     }@inputs:
     {
       nixosConfigurations.${nixpkgs.lib.fileContents "/etc/hostname"} = nixpkgs.lib.nixosSystem {
@@ -81,8 +97,18 @@
           home-manager.nixosModules.home-manager
           nerivations.nixosModules.default
 
+          steam-session.nixosModules.default
+          ./system/desktop/steam-session.nix
+
+          hyprland.nixosModules.default
+          hyprlux.nixosModules.default
+          ./system/desktop/hyprland
+          ./system/applications/modules/hyprlux.nix
+
           ./system/desktop
           ./system/desktop/gnome
+
+          ./system/applications/modules/zen-browser
 
           ./system/applications/users/main
 

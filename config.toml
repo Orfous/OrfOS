@@ -3,9 +3,12 @@ android-tools = false
 brave = false
 celluloid = false
 clamav = false
-mangohud = true
 nvchad = true
+php = false
+pitivi = false
+solaar = true
 sunshine = false
+yazi = false
 
 [icedos.applications.codium]
 enable = true
@@ -33,6 +36,10 @@ extensions = [
 ]
 zoomLevel = 0
 
+[icedos.applications.mangohud]
+enable = true
+maxFpsLimit = 165 # Use 0 for unlimited
+
 [icedos.applications.emulators]
 switch = false
 wiiu = false
@@ -43,6 +50,7 @@ hideDecorations = true # Hide top bar
 
 [icedos.applications.librewolf]
 enable = true
+default = true
 overrides = false
 privacy = false
 
@@ -70,7 +78,33 @@ enable = true
 enableTrayscale = true
 
 [icedos.applications.valent]
+enable = false
 deviceId = "901524a4_c7c0_407e_9903_431abce54131"
+
+[icedos.applications.zed]
+enable = true
+ollamaSupport = false
+
+[icedos.applications.zed.theme]
+dark = "One Dark Pro"
+light = "One Light"
+mode = "system" # system, dark, light
+
+[icedos.applications.zen-browser]
+enable = true
+default = false
+overrides = true
+privacy = true
+
+[icedos.applications.zen-browser.pwas]
+enable = false
+sites = [
+  "https://app.tuta.com",
+  "https://develop.element.io",
+  "https://discord.com/app",
+  "https://dtekteam.slack.com/",
+  "https://web.skype.com/",
+]
 
 [icedos.bootloader]
 animation = false # Hides linux kernel logs and displays a loading interface based on OEM
@@ -116,6 +150,13 @@ maxWorkspaces = 1 # Determines the maximum number of workspaces when dynamic wor
 [icedos.desktop.hyprland]
 enable = false
 backlight = "amdgpu_bl0" # Find backlight unit using brightnessctl
+hyprexpo = true # Activity viewer
+mainMonitor = "DP-1"
+
+[icedos.desktop.hyprland.cs2fix]
+enable = false
+width = 1440
+height = 1080
 
 [icedos.desktop.hyprland.lock]
 secondsToLowerBrightness = 60
@@ -124,6 +165,7 @@ diskUsageThreshold = 10 # Disk usage to inhibit lock in MB/s
 networkUsageThreshold = 1_000_000 # Network usage to inhibit lock in bytes/s
 
 [icedos.hardware]
+bluetooth = true
 mounts = true # Set to false if hardware/mounts.nix is not correctly configured
 
 [icedos.hardware.btrfs.compression]
@@ -145,6 +187,9 @@ value = "-p 0 -v 3C -f A0" # Pstate 0, 1.175 voltage, 4000 clock speed
 laptop = false
 steamdeck = false
 
+[icedos.hardware.drivers]
+xpadneo = false # Xbox gamepad bluetooth driver (supports various xinput controllers)
+
 [icedos.hardware.devices.server]
 enable = false
 dns = "9.9.9.9"
@@ -152,54 +197,32 @@ gateway = "192.168.1.1"
 interface = "eno1"
 ip = "192.168.1.3"
 
-[icedos.hardware.gpus]
-amd = false
+[icedos.hardware.gpus.amd]
+enable = false
+rocm = true
 
 [icedos.hardware.gpus.nvidia]
 enable = true
 beta = true
+cuda = false
 
 [icedos.hardware.gpus.nvidia.powerLimit]
 enable = false
 value = 242
 
-[icedos.hardware.monitors.a]
-enable = true
-deck = false
-name = "HDMI-A-1"
-resolution = "1920x1080"
-refreshRate = 60
+[[icedos.hardware.monitors]]
+name = "DP-0"
+resolution = "2560x1440"
+refreshRate = 165
 position = "0x0"
 scaling = 1
 rotation = 0
 
-[icedos.hardware.monitors.b]
-enable = false
-deck = false
-name = "DP-2"
-resolution = "1360x768"
+[[icedos.hardware.monitors]]
+name = "HDMI-0"
+resolution = "1920x1080"
 refreshRate = 60
-position = "-1360x0"
-scaling = 1
-rotation = 0
-
-[icedos.hardware.monitors.c]
-enable = false
-deck = false
-name = "DP-3"
-resolution = "1280x1024"
-refreshRate = 75
-position = "1920x0"
-scaling = 1
-rotation = 0
-
-[icedos.hardware.monitors.d]
-enable = false
-deck = false
-name = "HDMI-A-1"
-resolution = "3840x2160"
-refreshRate = 60
-position = "-5200x0"
+position = "2560x360"
 scaling = 1
 rotation = 0
 

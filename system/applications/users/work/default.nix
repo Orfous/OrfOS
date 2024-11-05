@@ -42,7 +42,7 @@ let
     update
   ];
 
-  gitLocation = "${cfg.home}/${username}/git/";
+  gitLocation = "${cfg.home}/${username}/.code/";
 
   storeAliases = {
     burkani = {
@@ -101,7 +101,7 @@ mkIf (cfg.users.work.enable) {
 
     mysql = {
       enable = true;
-      package = pkgs.mysql;
+      package = pkgs.mariadb;
     };
   };
 }

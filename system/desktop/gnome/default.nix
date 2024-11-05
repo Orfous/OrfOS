@@ -30,7 +30,6 @@ in
           gnome-extension-manager # Gnome extensions manager and downloader
           gnome-tweaks # Tweaks missing from pure gnome
           gnomeExtensions.appindicator # Tray icons for gnome
-          gnomeExtensions.pano # Next-gen Clipboard manager
           gnomeExtensions.quick-settings-tweaker
         ]
         ++ optional (cfg.extensions.arcmenu) gnomeExtensions.arcmenu # Start menu
@@ -48,14 +47,14 @@ in
       epiphany # Web browser
       evince # Document viewer
       geary # Email
+      gnome-characters # Emojis
       gnome-console # Terminal
       gnome-font-viewer # Font viewer
+      gnome-maps # Maps
+      gnome-software # Software center
       gnome-system-monitor # System monitoring tool
       gnome-text-editor # Text editor
       gnome-tour # Greeter
-      gnome.gnome-characters # Emojis
-      gnome.gnome-maps # Maps
-      gnome.gnome-software # Software center
       simple-scan # Scanner
       yelp # Help
     ];

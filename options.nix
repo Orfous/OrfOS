@@ -25,10 +25,14 @@
           hideDecorations = mkOption { type = types.bool; };
         };
 
-        mangohud = mkOption { type = types.bool; };
+        mangohud = {
+          enable = mkOption { type = types.bool; };
+          maxFpsLimit = mkOption { type = types.number; };
+        };
 
         librewolf = {
           enable = mkOption { type = types.bool; };
+          default = mkOption { type = types.bool; };
           overrides = mkOption { type = types.bool; };
           privacy = mkOption { type = types.bool; };
 
@@ -39,6 +43,9 @@
         };
 
         nvchad = mkOption { type = types.bool; };
+        php = mkOption { type = types.bool; };
+        pitivi = mkOption { type = types.bool; };
+        solaar = mkOption { type = types.bool; };
 
         steam = {
           enable = mkOption { type = types.bool; };
@@ -64,7 +71,35 @@
           enableTrayscale = mkOption { type = types.bool; };
         };
 
-        valent.deviceId = mkOption { type = types.str; };
+        valent = {
+          enable = mkOption { type = types.bool; };
+          deviceId = mkOption { type = types.str; };
+        };
+
+        yazi = mkOption { type = types.bool; };
+
+        zed = {
+          enable = mkOption { type = types.bool; };
+          ollamaSupport = mkOption { type = types.bool; };
+
+          theme = {
+            dark = mkOption { type = types.str; };
+            light = mkOption { type = types.str; };
+            mode = mkOption { type = types.str; };
+          };
+        };
+
+        zen-browser = {
+          enable = mkOption { type = types.bool; };
+          default = mkOption { type = types.bool; };
+          overrides = mkOption { type = types.bool; };
+          privacy = mkOption { type = types.bool; };
+
+          pwas = {
+            enable = mkOption { type = types.bool; };
+            sites = mkOption { type = with types; listOf str; };
+          };
+        };
       };
 
       bootloader = {
@@ -120,6 +155,13 @@
         hyprland = {
           enable = mkOption { type = types.bool; };
           backlight = mkOption { type = types.str; };
+          hyprexpo = mkOption { type = types.bool; };
+
+          cs2fix = {
+            enable = mkOption { type = types.bool; };
+            width = mkOption { type = types.number; };
+            height = mkOption { type = types.number; };
+          };
 
           lock = {
             secondsToLowerBrightness = mkOption { type = types.number; };
@@ -127,10 +169,14 @@
             diskUsageThreshold = mkOption { type = types.number; };
             networkUsageThreshold = mkOption { type = types.number; };
           };
+
+          mainMonitor = mkOption { type = types.str; };
         };
       };
 
       hardware = {
+        bluetooth = mkOption { type = types.bool; };
+
         btrfs.compression = {
           enable = mkOption { type = types.bool; };
           mounts = mkOption { type = types.bool; };
@@ -167,12 +213,18 @@
           steamdeck = mkOption { type = types.bool; };
         };
 
+        drivers.xpadneo = mkOption { type = types.bool; };
+
         gpus = {
-          amd = mkOption { type = types.bool; };
+          amd = {
+            enable = mkOption { type = types.bool; };
+            rocm = mkOption { type = types.bool; };
+          };
 
           nvidia = {
             enable = mkOption { type = types.bool; };
             beta = mkOption { type = types.bool; };
+            cuda = mkOption { type = types.bool; };
 
             powerLimit = {
               enable = mkOption { type = types.bool; };
@@ -181,50 +233,21 @@
           };
         };
 
-        monitors = {
-          a = {
-            enable = mkOption { type = types.bool; };
-            deck = mkOption { type = types.bool; };
-            name = mkOption { type = types.str; };
-            resolution = mkOption { type = types.str; };
-            refreshRate = mkOption { type = types.number; };
-            position = mkOption { type = types.str; };
-            scaling = mkOption { type = types.number; };
-            rotation = mkOption { type = types.number; };
-          };
-
-          b = {
-            enable = mkOption { type = types.bool; };
-            deck = mkOption { type = types.bool; };
-            name = mkOption { type = types.str; };
-            resolution = mkOption { type = types.str; };
-            refreshRate = mkOption { type = types.number; };
-            position = mkOption { type = types.str; };
-            scaling = mkOption { type = types.number; };
-            rotation = mkOption { type = types.number; };
-          };
-
-          c = {
-            enable = mkOption { type = types.bool; };
-            deck = mkOption { type = types.bool; };
-            name = mkOption { type = types.str; };
-            resolution = mkOption { type = types.str; };
-            refreshRate = mkOption { type = types.number; };
-            position = mkOption { type = types.str; };
-            scaling = mkOption { type = types.number; };
-            rotation = mkOption { type = types.number; };
-          };
-
-          d = {
-            enable = mkOption { type = types.bool; };
-            deck = mkOption { type = types.bool; };
-            name = mkOption { type = types.str; };
-            resolution = mkOption { type = types.str; };
-            refreshRate = mkOption { type = types.number; };
-            position = mkOption { type = types.str; };
-            scaling = mkOption { type = types.number; };
-            rotation = mkOption { type = types.number; };
-          };
+        monitors = mkOption {
+          type = types.listOf (
+            types.submodule {
+              options = {
+                name = mkOption { type = types.str; };
+                deck = mkOption { type = types.bool; };
+                gaming = mkOption { type = types.bool; };
+                resolution = mkOption { type = types.str; };
+                refreshRate = mkOption { type = types.number; };
+                position = mkOption { type = types.str; };
+                scaling = mkOption { type = types.number; };
+                rotation = mkOption { type = types.number; };
+              };
+            }
+          );
         };
 
         networking = {
