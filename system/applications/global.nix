@@ -44,6 +44,11 @@ let
     toggle-services
     trim-generations
   ];
+
+    aagl-gtk-on-nix = import (
+    builtins.fetchTarball "https://github.com/ezKEa/aagl-gtk-on-nix/archive/main.tar.gz"
+  );
+
 in
 {
   imports = [
@@ -72,7 +77,17 @@ in
     ./modules/tmux
     ./modules/waydroid.nix
     ./modules/zsh
+
+    # Enable Genshin Impact launcher
+    aagl-gtk-on-nix.module
   ];
+
+
+  programs.anime-game-launcher.enable = true;
+  nix.settings = {
+    substituters = [ "https://ezkea.cachix.org" ];
+    trusted-public-keys = [ "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI=" ];
+  };
 
   environment.systemPackages =
     (pkgMapper pkgFile.packages) ++ myPackages ++ codingDeps ++ shellScripts;
@@ -82,6 +97,7 @@ in
   };
 
   services = {
+    mullvad-vpn.enable = true;
     openssh.enable = true;
     fwupd.enable = true;
     udev.packages = with pkgs; [
