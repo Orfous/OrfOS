@@ -43,8 +43,8 @@ hideDecorations = true # Hide top bar
 
 [icedos.applications.librewolf]
 enable = true
-overrides = true
-privacy = true
+overrides = false
+privacy = false
 
 [icedos.applications.librewolf.pwas]
 enable = true
@@ -160,7 +160,7 @@ enable = true
 beta = true
 
 [icedos.hardware.gpus.nvidia.powerLimit]
-enable = true
+enable = false
 value = 242
 
 [icedos.hardware.monitors.a]
@@ -174,7 +174,7 @@ scaling = 1
 rotation = 0
 
 [icedos.hardware.monitors.b]
-enable = true
+enable = false
 deck = false
 name = "DP-2"
 resolution = "1360x768"
@@ -184,7 +184,7 @@ scaling = 1
 rotation = 0
 
 [icedos.hardware.monitors.c]
-enable = true
+enable = false
 deck = false
 name = "DP-3"
 resolution = "1280x1024"
@@ -194,7 +194,7 @@ scaling = 1
 rotation = 0
 
 [icedos.hardware.monitors.d]
-enable = true
+enable = false
 deck = false
 name = "HDMI-A-1"
 resolution = "3840x2160"
@@ -265,7 +265,7 @@ enable = true
 seconds = 300
 
 [icedos.system.users.main.desktop.idle.suspend]
-enable = true
+enable = false
 seconds = 900
 
 [icedos.system.users.work]
@@ -300,15 +300,15 @@ list = [
 ]
 
 [icedos.system.users.work.desktop.idle.lock]
-enable = true
+enable = false
 seconds = 180
 
 [icedos.system.users.work.desktop.idle.disableMonitors]
-enable = true
+enable = false
 seconds = 300
 
 [icedos.system.users.work.desktop.idle.suspend]
-enable = true
+enable = false
 seconds = 900
 
 [icedos.system.users.server]
