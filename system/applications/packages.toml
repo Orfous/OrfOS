@@ -15,7 +15,7 @@ codingDeps = [
 packages = [
   "appimage-run", # Appimage runner
   # "bat", # Better cat command
-  "bless", # HEX Editor
+  # "bless", # HEX Editor
   "curtail", # Image compressor
   "duf", # Disk usage utility
   "efibootmgr", # Edit EFI entries
