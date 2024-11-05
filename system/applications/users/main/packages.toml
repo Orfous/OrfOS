@@ -13,6 +13,8 @@ myPackages = [
     "xorg.xev",
     "xkbset",
     "nodePackages_latest.gulp",
+    "openssl_3_3",
+    "obsidian",
 ]
 
 emulators = [
