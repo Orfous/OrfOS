@@ -20,17 +20,6 @@
     };
 
     # Apps
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprlux = {
-      url = "github:amadejkastelic/Hyprlux";
-      inputs.nixpkgs.follows = "hyprland/nixpkgs";
-    };
 
     pipewire-screenaudio = {
       url = "github:IceDBorn/pipewire-screenaudio";
@@ -58,11 +47,6 @@
       pipewire-screenaudio,
       self,
       shell-in-netns,
-      hyprland,
-      hyprland-plugins,
-      hyprlux,
-
-      steam-session,
 
       zen-browser,
     }@inputs:
@@ -96,14 +80,6 @@
           chaotic.nixosModules.default
           home-manager.nixosModules.home-manager
           nerivations.nixosModules.default
-
-          steam-session.nixosModules.default
-          ./system/desktop/steam-session.nix
-
-          hyprland.nixosModules.default
-          hyprlux.nixosModules.default
-          ./system/desktop/hyprland
-          ./system/applications/modules/hyprlux.nix
 
           ./system/desktop
           ./system/desktop/gnome
