@@ -49,6 +49,7 @@
       shell-in-netns,
 
       zen-browser,
+
     }@inputs:
     {
       nixosConfigurations.${nixpkgs.lib.fileContents "/etc/hostname"} = nixpkgs.lib.nixosSystem {
