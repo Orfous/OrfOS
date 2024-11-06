@@ -36,6 +36,22 @@ in
       bottles # Wine manager
       godot_4 # Game engine
       stremio # Media streaming platform
+      spotify # Music streaming Service
+      mullvad-vpn # The GUI client for mullvad
+      nextcloud-client # Nextcloud themed desktop client
+      bun # Incredibly fast JavaScript runtime, bundler, transpiler and package manager
+      adw-gtk3 # Adds libadwaita support to GTK-3
+      gradience# Customize libadwaita and GTK3 apps (with adw-gtk3)
+      gsound # Small library for playing system sounds (required to show file properties in Nautilus)
+      ungoogled-chromium # Chromium with dependencies on Google web services removed
+      python311Packages.pandas # Python pandas packages
+      python311Packages.pip
+      xorg.xmodmap
+      xorg.xev
+      xkbset
+      nodePackages_latest.gulp
+      openssl_3_3
+      obsidian
     ]
     ++ emulators
     ++ gaming;
