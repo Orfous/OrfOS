@@ -11,6 +11,7 @@ solaar = true
 sunshine = false
 suyu = false
 yazi = false
+aagl = false
 
 [icedos.applications.codium]
 enable = true
