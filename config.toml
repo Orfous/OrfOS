@@ -59,6 +59,10 @@ sites = [
   "https://discord.com/app"
 ]
 
+[icedos.applications.mullvad]
+enable = true
+gui = true
+
 [icedos.applications.steam]
 enable = true
 beta = true
