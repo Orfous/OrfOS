@@ -10,21 +10,24 @@ let
   btrfsCompression = cfg.btrfs.compression;
 in
 mkIf (cfg.mounts) {
-  fileSystems."/mnt/games" = {
-    device = "/dev/disk/by-uuid/040329ae-685d-4ba6-8bdd-e0a9785f9672";
+  fileSystems."/mnt/Games" = {
+    device = "/dev/disk/by-uuid/99d9fc7b-2a21-42da-a05e-1f5881bb5081";
     fsType = "btrfs";
     options = mkIf (btrfsCompression.enable && btrfsCompression.mounts) [ "compress=zstd" ];
   };
 
-  fileSystems."/mnt/games2" = {
-    device = "/dev/disk/by-uuid/60876d91-f863-45db-88c5-4c707879588f";
+  fileSystems."/mnt/Harder Drive" = {
+    device = "/dev/disk/by-uuid/0b17e5e9-a2f1-4350-b0e9-740187d016ce";
     fsType = "btrfs";
     options = mkIf (btrfsCompression.enable && btrfsCompression.mounts) [ "compress=zstd" ];
   };
 
-  fileSystems."/mnt/storage" = {
-    device = "/dev/disk/by-uuid/89730200-942d-4a5c-893f-0196c87435d2";
-    fsType = "btrfs";
-    options = mkIf (btrfsCompression.enable && btrfsCompression.mounts) [ "compress=zstd" ];
-  };
+  #   fileSystems."/mnt/Softer Drive" = {
+  #     device = "/dev/disk/by-uuid/5febf70b-0510-4efc-9431-f104ea0eaa16";
+  #     encrypted = {
+  #       enable = true;
+  #       blkDev = "/dev/disk/by-uuid/0811fc67-2d1f-4d86-b681-e63b4747d47a";
+  #     };
+  #     fsType = "auto";
+  #   };
 }
