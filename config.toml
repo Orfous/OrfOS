@@ -6,7 +6,7 @@ extraPackages = [
   "nixfmt-rfc-style", # A nix formatter
   "nodejs", # Node package manager
   "python3", # Python
-
+  "obsidian",
   "appimage-run", # Appimage runner
   # "bat", # Better cat command
   # "bless", # HEX Editor
@@ -36,10 +36,12 @@ extraPackages = [
   "onlyoffice-bin", # Microsoft Office alternative for Linux
   "p7zip", # 7zip
   "pavucontrol", # Sound manager
+  "pnpm", # Fast, disk space efficient package manager for JavaScript
   # "pitivi", # Video editor
   "rnnoise-plugin", # A real-time noise suppression plugin
   # "scrcpy", # Remotely use android
   "signal-desktop", # Encrypted messaging platform
+  "stremio",
   # "solaar", # Logitech devices manager
   "tree", # Display folder content at a tree format
   "unrar", # Support opening rar files
@@ -50,8 +52,11 @@ extraPackages = [
   "winetricks", # Wine prefix settings manager
   "woeusb", # Windows ISO Burner
   "xorg.xhost", # Use x.org server with containers
+  "spotify",
+  "jetbrains.webstorm",
+  "protonvpn-gui"
 ]
-aagl = false
+aagl = true
 android-tools = true
 brave = false
 celluloid = true
@@ -130,8 +135,8 @@ enable = false
 deviceId = "901524a4_c7c0_407e_9903_431abce54131"
 
 [icedos.applications.zed]
-enable = true
 ollamaSupport = false
+enable = true
 vim = true
 
 [icedos.applications.zed.theme]
@@ -140,7 +145,7 @@ light = "One Light"
 mode = "system" # Options: 'system', 'dark', 'light'
 
 [icedos.applications.zen-browser]
-enable = false
+enable = true
 privacy = true
 
 [icedos.applications.zen-browser.pwas]
@@ -260,7 +265,7 @@ intel = false
 enable = true
 
 [icedos.hardware.cpus.amd.undervolt]
-enable = true
+enable = false
 value = "-p 0 -v 3C -f A0" # Pstate 0, 1.175 voltage, 4000 clock speed
 
 [icedos.hardware.devices]
@@ -279,11 +284,11 @@ interface = "eno1"
 ip = "192.168.1.3"
 
 [icedos.hardware.gpus.amd]
-enable = false
-rocm = true
+enable = true
+rocm = false
 
 [icedos.hardware.gpus.nvidia]
-enable = true
+enable = false
 beta = true
 cuda = false
 openDrivers = true

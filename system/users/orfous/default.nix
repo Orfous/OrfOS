@@ -21,7 +21,7 @@ let
   ];
 in
 {
-  users.users.icedborn.packages =
+  users.users.orfous.packages =
     with pkgs;
     [
       adwsteamgtk
