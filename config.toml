@@ -1,14 +1,70 @@
 [icedos.applications]
-extraPackages = []
+extraPackages = [
+    "bruno", # API explorer
+  "gcc", # C++ compiler
+  "gnumake", # A tool to control the generation of non-source files from sources
+  "nixfmt-rfc-style", # A nix formatter
+  "nodejs", # Node package manager
+  "python3", # Python
+  "obsidian",
+  "appimage-run", # Appimage runner
+  # "bat", # Better cat command
+  # "bless", # HEX Editor
+  "curtail", # Image compressor
+  "duf", # Disk usage utility
+  "efibootmgr", # Edit EFI entries
+  "endeavour", # Tasks
+  "fd", # Find alternative
+  "fragments", # Bittorrent client following Gnome UI standards
+  "ghex", # HEX Editor
+  "gimp", # Image editor
+  "gping", # ping with a graph
+  "gthumb", # Image viewer
+  "iotas", # Notes
+  "jc", # JSON parser
+  "jq", # JSON parser
+  "killall", # Tool to kill all programs matching process name
+  "lsd", # Better ls command
+  "mission-center", # Task manager
+  # "moonlight-qt", # Remote streaming client
+  "mousai", # Song recognizer
+  "ncdu", # Terminal disk analyzer
+  "newsflash", # RSS reader
+  "nix-health", # Check system health
+  "ntfs3g", # Support NTFS drives
+  "obs-studio", # Recording/Livestream
+  "onlyoffice-bin", # Microsoft Office alternative for Linux
+  "p7zip", # 7zip
+  "pavucontrol", # Sound manager
+  "pnpm", # Fast, disk space efficient package manager for JavaScript
+  # "pitivi", # Video editor
+  "rnnoise-plugin", # A real-time noise suppression plugin
+  # "scrcpy", # Remotely use android
+  "signal-desktop", # Encrypted messaging platform
+  "stremio",
+  # "solaar", # Logitech devices manager
+  "tree", # Display folder content at a tree format
+  "unrar", # Support opening rar files
+  "unzip", # An extraction utility
+  "warp", # File sync
+  "wget", # Terminal downloader
+  "wine", # Compatibility layer capable of running Windows applications
+  "winetricks", # Wine prefix settings manager
+  "woeusb", # Windows ISO Burner
+  "xorg.xhost", # Use x.org server with containers
+  "spotify",
+  "jetbrains.webstorm",
+  "discord-canary"
+]
 insecurePackages = []
-aagl = false
+aagl = true
 android-tools = false
 celluloid = true
 clamav = false
-defaultBrowser = "zen" # Options: 'librewolf', 'zen'
-defaultEditor = "zed" # Options: 'codium', 'zed'
+defaultBrowser = "librewolf" # Options: 'librewolf', 'zen'
+defaultEditor = "codium" # Options: 'codium', 'zed'
 input-remapper = true
-librewolf = false
+librewolf = true
 nautilus = true
 php = false
 rust = false
@@ -33,12 +89,12 @@ enable = true
 applet = true
 
 [icedos.applications.obs-studio]
-enable = true
+enable = false
 virtualCamera = false
 
 [icedos.applications.signal]
 enable = true
-package = "flare" # Options: 'flare', 'signal'
+package = "signal" # Options: 'flare', 'signal'
 
 [icedos.applications.steam]
 enable = true
@@ -47,7 +103,7 @@ downloadsWorkaround = true
 
 [icedos.applications.steam.session]
 enable = false
-user = "icedborn"
+user = "orfous"
 
 [icedos.applications.steam.session.autoStart]
 enable = false
@@ -93,7 +149,7 @@ sites = [
 ]
 
 [icedos.bootloader]
-animation = true # Hides console and displays a loading interface based on OEM on boot
+animation = false # Hides console and displays a loading interface based on OEM on boot
 
 [icedos.bootloader.grub]
 enable = false
@@ -107,21 +163,21 @@ mountPoint = "/boot"
 accentColor = "7E57C2" # With gnome enabled this is getting overriden by gnome's selected accent color hex code
 
 [icedos.desktop.autologin]
-enable = true
-user = "icedborn"
+enable = false
+user = "orfous"
 
 [icedos.desktop.gdm]
 enable = true
 autoSuspend = true
 
 [icedos.desktop.gnome]
-enable = false
+enable = true
 accentColor = "purple" # Options: 'blue', 'teal', 'green', 'yellow', 'orange', 'red', 'pink', 'purple', 'slate'
-hotCorners = false
+hotCorners = true
 powerButtonAction = "interactive"
 
 # Options: 'minimize', 'maximize', 'close', 'spacer'(adds space between buttons), ':'(left-center-right separator)
-titlebarLayout = "appmenu:close"
+titlebarLayout = "appmenu:minimize,close"
 
 [icedos.desktop.gnome.extensions]
 arcmenu = false
@@ -136,7 +192,7 @@ dynamicWorkspaces = true
 maxWorkspaces = 1 # Determines the maximum number of workspaces when dynamic workspaces are disabled
 
 [icedos.desktop.hyprland]
-enable = true
+enable = false
 
 [icedos.desktop.hyprland.settings]
 followMouse = 1 # Options: https://wiki.hyprland.org/Configuring/Variables/#follow-mouse-cursor
@@ -189,27 +245,27 @@ bluetooth = true
 
 [[icedos.hardware.mounts]]
 path = "/"
-device = "/dev/disk/by-uuid/e2a8d4bf-b1fc-446f-b347-c3671eda1ccb"
+device = "/dev/disk/by-uuid/2d2507f5-9d13-4580-9b63-7847206f17bb"
 fsType = "btrfs"
 flags = ["compress=zstd", "nofail", "x-gvfs-show"]
 
 [[icedos.hardware.mounts]]
-path = "/mnt/games"
-device = "/dev/disk/by-uuid/040329ae-685d-4ba6-8bdd-e0a9785f9672"
+path = "/mnt/Games"
+device = "/dev/disk/by-uuid/99d9fc7b-2a21-42da-a05e-1f5881bb5081"
 fsType = "btrfs"
 flags = ["compress=zstd", "nofail", "x-gvfs-show"]
 
 [[icedos.hardware.mounts]]
-path = "/mnt/games2"
-device = "/dev/disk/by-uuid/60876d91-f863-45db-88c5-4c707879588f"
+path = "/mnt/Harder Drive"
+device = "/dev/disk/by-uuid/0b17e5e9-a2f1-4350-b0e9-740187d016ce"
 fsType = "btrfs"
 flags = ["compress=zstd", "nofail", "x-gvfs-show"]
 
-[[icedos.hardware.mounts]]
-path = "/mnt/storage"
-device = "/dev/disk/by-uuid/89730200-942d-4a5c-893f-0196c87435d2"
-fsType = "btrfs"
-flags = ["compress=zstd", "nofail", "x-gvfs-show"]
+# [[icedos.hardware.mounts]]
+# path = "/mnt/Softer Drive"
+# device = "/dev/disk/by-uuid/5febf70b-0510-4efc-9431-f104ea0eaa16"
+# fsType = "btrfs"
+# flags = ["compress=zstd", "nofail", "x-gvfs-show"]
 
 [icedos.hardware.cpus]
 intel = false
@@ -245,34 +301,22 @@ enable = true
 value = 242
 
 [[icedos.hardware.monitors]]
-name = "DP-2"
-disable = false
-resolution = "3440x1440"
-refreshRate = 144
-position = "3840x0"
-scaling = 1
-rotation = 0
-tenBit = false
-
-[[icedos.hardware.monitors]]
-name = "DP-1"
-disable = false
-resolution = "1920x1080"
-refreshRate = 144
-position = "7280x200"
-scaling = 1
-rotation = 0
-tenBit = false
-
-[[icedos.hardware.monitors]]
-name = "HDMI-A-1"
-disable = false
-resolution = "3840x2160"
-refreshRate = 60
+name = "DP-0"
+resolution = "2560x1440"
+refreshRate = 165
 position = "0x0"
 scaling = 1
 rotation = 0
-tenBit = false
+tenBit = true
+
+[[icedos.hardware.monitors]]
+name = "HDMI-0"
+resolution = "1920x1080"
+refreshRate = 60
+position = "2560x360"
+scaling = 1
+rotation = 0
+tenBit = true
 
 [icedos.hardware.networking]
 hostname = "desktop"
@@ -282,7 +326,7 @@ vpnExcludeIp = "192.168.1.200"
 
 [icedos.hardware.networking.wg-quick]
 enable = true
-interfaces = ["protonvpn"]
+interfaces = ["ro70"]
 
 [icedos.system]
 channels = [] # https://github.com/NixOS/nixpkgs/branches/active
@@ -296,35 +340,35 @@ version = "23.05" # Do not change without checking the docs (config.system.state
 bootEntries = 10
 
 [icedos.system.generations.garbageCollect]
-automatic = true
-days = 0 # Number of days before a generation can be deleted
+automatic = false
+days = 5 # Number of days before a generation can be deleted
 generations = 10 # Number of generations that will always be kept
 interval = "Mon *-*-* 00:00:00" # Format(https://www.freedesktop.org/software/systemd/man/latest/systemd.time.html)
 
-[icedos.system.users.icedborn]
-description = "IceDBorn"
+[icedos.system.users.orfous]
+description = "orfous"
 type = "main" # Options: 'main', 'work'
 
-[icedos.system.users.icedborn.applications.codium]
+[icedos.system.users.orfous.applications.codium]
 autoSave = "off" # Options: 'off', 'afterDelay', 'onFocusChange', 'onWindowChange'
 formatOnSave = true
 formatOnPaste = true
 
-[icedos.system.users.icedborn.applications.git]
-username = "IceDBorn"
-email = "git.outsider841@simplelogin.fr"
+[icedos.system.users.orfous.applications.git]
+username = "orfous"
+email = "orfous29@gmail.com"
 
 
-[icedos.system.users.icedborn.desktop.gnome]
+[icedos.system.users.orfous.desktop.gnome]
 startupScript = ""
 
-[icedos.system.users.icedborn.desktop.gnome.pinnedApps.arcmenu]
+[icedos.system.users.orfous.desktop.gnome.pinnedApps.arcmenu]
 enable = false
 list = ["codiumIDE.desktop", "codium.desktop"]
 
 # Set pinned apps for gnome shell (will be used by dash-to-panel if enabled)
-[icedos.system.users.icedborn.desktop.gnome.pinnedApps.shell]
-enable = false
+[icedos.system.users.orfous.desktop.gnome.pinnedApps.shell]
+enable = true
 list = [
   "steam.desktop",
   "webcord.desktop",
@@ -332,35 +376,35 @@ list = [
   "librewolf.desktop",
 ]
 
-[icedos.system.users.icedborn.desktop.idle.sd-inhibitor]
-enable = true
+[icedos.system.users.orfous.desktop.idle.sd-inhibitor]
+enable = false
 
-[icedos.system.users.icedborn.desktop.idle.sd-inhibitor.watchers.cpu]
+[icedos.system.users.orfous.desktop.idle.sd-inhibitor.watchers.cpu]
 enable = true
 threshold = 60 # CPU usage to inhibit lock in percentage
 
-[icedos.system.users.icedborn.desktop.idle.sd-inhibitor.watchers.disk]
+[icedos.system.users.orfous.desktop.idle.sd-inhibitor.watchers.disk]
 enable = true
 threshold = 10 # Disk usage to inhibit lock in MB/s
 
-[icedos.system.users.icedborn.desktop.idle.sd-inhibitor.watchers.network]
+[icedos.system.users.orfous.desktop.idle.sd-inhibitor.watchers.network]
 enable = true
 threshold = 1_000_000 # Network usage to inhibit lock in bytes/s
 
-[icedos.system.users.icedborn.desktop.idle.sd-inhibitor.watchers.pipewire]
+[icedos.system.users.orfous.desktop.idle.sd-inhibitor.watchers.pipewire]
 enable = true
 inputsToIgnore = ["Noise Canceling source", "Peak detect", "cava"]
 outputsToIgnore = ["Discord", "Element"]
 
-[icedos.system.users.icedborn.desktop.idle.lock]
+[icedos.system.users.orfous.desktop.idle.lock]
 enable = true
 seconds = 180
 
-[icedos.system.users.icedborn.desktop.idle.disableMonitors]
+[icedos.system.users.orfous.desktop.idle.disableMonitors]
 enable = true
 seconds = 900
 
-[icedos.system.users.icedborn.desktop.idle.suspend]
+[icedos.system.users.orfous.desktop.idle.suspend]
 enable = true
 seconds = 1800
 
@@ -369,6 +413,6 @@ virtManager = false
 waydroid = false
 
 [icedos.system.virtualisation.containerManager]
-enable = false
+enable = true
 usePodman = true
 requireSudoForDocker = true # CAUTION: Disabling this gives every user root priviledges!

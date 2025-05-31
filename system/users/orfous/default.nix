@@ -7,7 +7,7 @@ let
   launchers = with pkgs; [
     # cemu
     # duckstation
-    # heroic
+    heroic
     # pcsx2
     # ppsspp
     # prismlauncher
@@ -15,7 +15,7 @@ let
   ];
 in
 {
-  users.users.icedborn.packages =
+  users.users.orfous.packages =
     with pkgs;
     [
       appimage-run
