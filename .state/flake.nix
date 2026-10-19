@@ -1,0 +1,300 @@
+{
+  inputs = {
+    home-manager = {
+      inputs = {
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
+      url = "github:nix-community/home-manager";
+    };
+    icedos-config = {
+      url = "path:/nix/store/i7b8n0c5f89xnvmckhviw386gb01xrw9-icedos-config";
+    };
+    icedos-config-hytale-launcher = {
+      inputs = {
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
+      url = "path:/nix/store/xivv2i5253l6j04il7c5l23x8pgbv63x-icedos-config-hytale-launcher-subflake";
+    };
+    icedos-core = {
+      follows = "icedos-config/icedos";
+    };
+    icedos-github_icedos_apps = {
+      url = "github:icedos/apps/b310a539477aa6f8ea06109ce0e32fc084c9c913";
+    };
+    icedos-github_icedos_apps-celluloid = {
+      inputs = { };
+      url = "path:/nix/store/bakwi8d6hcgmmjnmrrr4nzvwjhwsbcix-icedos-github_icedos_apps-celluloid-subflake";
+    };
+    icedos-github_icedos_desktop = {
+      url = "github:icedos/desktop/0b47318cde1f5e3e7ab6645233f05487d7a8297f";
+    };
+    icedos-github_icedos_desktop-stylix = {
+      inputs = {
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
+      url = "path:/nix/store/crb5iyljvk4kh2mf3bnb9a21v4l8jvbg-icedos-github_icedos_desktop-stylix-subflake";
+    };
+    icedos-github_icedos_gaming = {
+      url = "github:icedos/gaming/0ccb799a749dfacccb63c10d18ab4eb3e284cf87";
+    };
+    icedos-github_icedos_gaming-aagl = {
+      inputs = {
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
+      url = "path:/nix/store/lakwlwykiiflnq6mcrqhwnipn0i681x3-icedos-github_icedos_gaming-aagl-subflake";
+    };
+    icedos-github_icedos_gaming-proton-launch = {
+      inputs = {
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
+      url = "path:/nix/store/b42rsxan9wnxbvk89hxc97c1rczny6hc-icedos-github_icedos_gaming-proton-launch-subflake";
+    };
+    icedos-github_icedos_hardware = {
+      url = "github:icedos/hardware/c052259fcee4daa039f20943e4a70784d5d2c081";
+    };
+    icedos-github_icedos_kde = {
+      url = "github:icedos/kde/2a724b8339a3ccb23135aa46dda68a0353effbd2";
+    };
+    icedos-github_icedos_kde-default = {
+      inputs = {
+        home-manager = {
+          follows = "home-manager";
+        };
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
+      url = "path:/nix/store/7aczmhzngbc9q0dx2mfb2apjvbq0hdhw-icedos-github_icedos_kde-default-subflake";
+    };
+    icedos-github_icedos_providers = {
+      url = "github:icedos/providers/86f823cc597a496a3b8f4424ab3bb168d806303f";
+    };
+    icedos-github_icedos_providers-jovian = {
+      inputs = {
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
+      url = "path:/nix/store/m4dv6ndsd7kadj61d6f2i3j8a0bm21zz-icedos-github_icedos_providers-jovian-subflake";
+    };
+    icedos-github_icedos_providers-nur = {
+      inputs = {
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
+      url = "path:/nix/store/c4kbdm8j9zl9vl23mgclszb7cki87n36-icedos-github_icedos_providers-nur-subflake";
+    };
+    icedos-github_icedos_tweaks = {
+      url = "github:icedos/tweaks/95c46f51bc85b1cbcc4d58bef2750581a26addab";
+    };
+    icedos-github_icedos_virtualisation = {
+      url = "github:icedos/virtualisation/eac61965dc47fccc50f7f6c67f4a379b5ea6a4d8";
+    };
+    icedos-overlay-github_nixos_nixpkgs_nixos-unstable-small = {
+      url = "github:nixos/nixpkgs/nixos-unstable-small";
+    };
+    icedos-state = {
+      flake = false;
+      url = "path:/nix/store/2l5hwvv76crrz2nsgaba1mrgiq5g6299-icedos";
+    };
+    nixpkgs = {
+      url = "github:nixos/nixpkgs/nixos-unstable";
+    };
+  };
+
+  outputs =
+    {
+      home-manager,
+      nixpkgs,
+      self,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
+
+      pkgs = import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+          permittedInsecurePackages = [ ];
+        };
+      };
+
+      inherit (pkgs) lib;
+      inherit (builtins) pathExists;
+      userConfig = import "${inputs.icedos-core}/lib/config/load-user-config.nix" "${inputs.icedos-config
+      }";
+      inherit (userConfig) icedos;
+
+      icedosLib = import "${inputs.icedos-core}/lib" {
+        inherit lib pkgs inputs;
+        config = icedos;
+        enableLogging = false;
+        self = toString inputs.icedos-core;
+      };
+
+      inherit (icedosLib) getModules modulesFromConfig;
+
+      # Re-derived, not interpolated: this stage reads the filtered snapshot.
+      extraOptionsDeclare = icedosLib.extraOptions.declare (userConfig.extraOptions or { });
+    in
+    {
+      # The same value `specialArgs.icedosLib` gets, so repl-context and MCP
+      # `nix_eval` read the lib the module system actually used.
+      icedosLib = modulesFromConfig.closureLib;
+
+      nixosConfigurations.icedos = nixpkgs.lib.nixosSystem rec {
+        specialArgs = {
+          # Reused (not re-merged), so module files and the module system share
+          # one lib. Genflake-side uses below keep the base `icedosLib`.
+          icedosLib = modulesFromConfig.closureLib;
+          inherit inputs;
+        };
+
+        modules = [
+          # Read configuration location
+          (
+            { icedosLib, ... }:
+            let
+              inherit (icedosLib) mkStrOption;
+            in
+            {
+              # config.toml values already abort at genflake ("option does not
+              # exist"); readOnly guards module-set values at build stage.
+              options.icedos.configurationLocation = mkStrOption {
+                readOnly = true;
+                default = "/home/orfous/dev/OrfOSTemplate_2/.state";
+              };
+            }
+          )
+
+          # Remove nixos manual package
+          {
+            documentation.nixos.enable = false;
+          }
+
+          # repo url -> names, computed from the RAW config (no circularity).
+          # Backs `icedosLib.hasModule`.
+          {
+            icedos.system.loadedModules = modulesFromConfig.loadedModules;
+          }
+
+          {
+            imports = getModules "${inputs.icedos-core}/modules";
+          }
+
+          # Extra modules and stateVersion; missing dirs are skipped.
+          {
+            imports = lib.flatten (
+              map (
+                d:
+                let
+                  p = "${inputs.icedos-config}/${d}";
+                in
+                if pathExists p then getModules p else [ ]
+              ) [ "modules" ]
+            );
+            config.system.stateVersion = "25.11";
+          }
+
+          # Every top-level table except [icedos.*] is applied verbatim as NixOS
+          # config; `extraOptions` is a schema, not values, so it is excluded.
+          (lib.setDefaultModuleLocation "config.toml / configs/*.toml (raw NixOS passthrough)" {
+            config = builtins.removeAttrs userConfig [
+              "icedos"
+              "extraOptions"
+            ];
+          })
+
+          extraOptionsDeclare
+
+          home-manager.nixosModules.home-manager
+
+          ({ config, lib, ... }: {
+            # Head of the list, so the source swap runs BEFORE downstream
+            # `overrideAttrs` patch overlays it would otherwise clobber.
+            nixpkgs.overlays = lib.mkBefore (
+              icedosLib.pkgs.overlaysFromChannel config.icedos
+                inputs."icedos-overlay-github_nixos_nixpkgs_nixos-unstable-small"
+                [ "kdePackages" ]
+            );
+          })
+
+          { icedos.system.isFirstBuild = true; }
+
+          (
+            # Do not modify this file!  It was generated by ‘nixos-generate-config’
+            # and may be overwritten by future invocations.  Please make changes
+            # to /etc/nixos/configuration.nix instead.
+            {
+              config,
+              lib,
+              pkgs,
+              modulesPath,
+              ...
+            }:
+
+            {
+              imports = [
+                (modulesPath + "/installer/scan/not-detected.nix")
+              ];
+
+              boot.initrd.availableKernelModules = [
+                "nvme"
+                "xhci_pci"
+                "ahci"
+                "usbhid"
+                "usb_storage"
+                "sd_mod"
+              ];
+              boot.initrd.kernelModules = [ ];
+              boot.kernelModules = [ "kvm-amd" ];
+              boot.extraModulePackages = [ ];
+
+              fileSystems."/" = {
+                device = "/dev/disk/by-uuid/2d2507f5-9d13-4580-9b63-7847206f17bb";
+                fsType = "btrfs";
+                options = [ "subvol=@" ];
+              };
+
+              boot.initrd.luks.devices."luks-12fedaa1-486a-4da2-acda-6f3b6c7d1d64".device =
+                "/dev/disk/by-uuid/12fedaa1-486a-4da2-acda-6f3b6c7d1d64";
+
+              fileSystems."/boot" = {
+                device = "/dev/disk/by-uuid/0025-0666";
+                fsType = "vfat";
+              };
+
+              swapDevices = [ ];
+
+              # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+              # (the default) this is the recommended approach. When using systemd-networkd it's
+              # still possible to use this option, but it's recommended to use it in conjunction
+              # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+              networking.useDHCP = lib.mkDefault true;
+              # networking.interfaces.enp4s0.useDHCP = lib.mkDefault true;
+
+              nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+              hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+            }
+          )
+
+          ({ })
+
+        ]
+        ++ modulesFromConfig.options
+        ++ (modulesFromConfig.nixosModules { inherit inputs; });
+      };
+    };
+}
