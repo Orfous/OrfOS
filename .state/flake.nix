@@ -9,7 +9,7 @@
       url = "github:nix-community/home-manager";
     };
     icedos-config = {
-      url = "path:/nix/store/i7b8n0c5f89xnvmckhviw386gb01xrw9-icedos-config";
+      url = "path:/nix/store/hdn4gxvfwb1d0vrns5imwb0mwwvm7xz0-icedos-config";
     };
     icedos-config-hytale-launcher = {
       inputs = {
@@ -106,7 +106,7 @@
     };
     icedos-state = {
       flake = false;
-      url = "path:/nix/store/2l5hwvv76crrz2nsgaba1mrgiq5g6299-icedos";
+      url = "path:/nix/store/yw05v41gq3nsv7jm2g5194n3471qan5b-icedos";
     };
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-unstable";
@@ -174,7 +174,7 @@
               # exist"); readOnly guards module-set values at build stage.
               options.icedos.configurationLocation = mkStrOption {
                 readOnly = true;
-                default = "/home/orfous/dev/OrfOSTemplate_2/.state";
+                default = "/home/orfous/dev/OrfOS/.state";
               };
             }
           )
